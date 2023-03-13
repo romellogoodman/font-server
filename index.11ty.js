@@ -1,8 +1,10 @@
-const renderHTML = () => {
-  return `
+const fonts = require("./fonts.json");
+
+const html = `
     <html>
       <head>
         <title>Font Server | Romello Goodman</title>
+        <link rel="stylesheet" href="./styles.css" />
       </head>
       <body>
         <main>
@@ -11,14 +13,22 @@ const renderHTML = () => {
           <a href="https://github.com/romellogoodman/font-server">
             <p>Codebase Repo</p>
           </a>
+          <section>
+            ${fonts
+              .map((font) => {
+                return `
+                <div>
+                  <p>${font.family}</p>
+                </div>
+              `;
+              })
+              .join("\n")}
+          </section>
         </main>
       </body>
     </html>
     `;
-};
 
-exports.render = function (data) {
-  const html = renderHTML();
-
+exports.render = function () {
   return html;
 };
